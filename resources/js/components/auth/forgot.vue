@@ -8,7 +8,7 @@
                             <div class="col-lg-12">
                                 <div class="login-form">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Forgot Password</h1>
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
@@ -16,25 +16,12 @@
                                                    placeholder="Enter Email Address">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <a href="index.html" class="btn btn-primary btn-block">Login</a>
+                                            <a href="index.html" class="btn btn-primary btn-block">Forgot Password</a>
                                         </div>
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                        <router-link to="/register" class="font-weight-bold small">Create an Account!</router-link>
-                                    </div>
-                                    <div class="text-center">
-                                        <router-link to="/forgot" class="font-weight-bold small" href="register.html">Forgot Password?</router-link>
+                                        <router-link to="/" class="font-weight-bold small">Back to login!</router-link>
                                     </div>
                                 </div>
                             </div>
