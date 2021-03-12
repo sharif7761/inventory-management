@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'signup']]);
+        $this->middleware('JWT', ['except' => ['login', 'signup']]);
     }
 
     /**
@@ -71,7 +71,7 @@ class AuthController extends Controller
 
     public function signup(Request $request) {
         $validateData = $request->validate([
-           'email' => 'required | unique:users | max:255',
+           'email' => 'required| unique:users| max:255',
            'name' => 'required',
            'password' => 'required | min:6 | confirmed'
         ]);
@@ -82,7 +82,7 @@ class AuthController extends Controller
         $data['password'] = $request->password;
         DB::table('users')->insert($data);
 
-        return $this->login($request);
+        return response()->json(['message' => 'Successfully Registered']);
     }
 
     /**
