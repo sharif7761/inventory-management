@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -84,10 +85,10 @@ class AuthController extends Controller
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;
-        $data['password'] = $request->password;
+        $data['password'] = Hash::make($request->password);
         DB::table('users')->insert($data);
 
-        return response()->json(['message' => 'Successfully Registered']);
+        return $this->login($request);
     }
 
     /**
