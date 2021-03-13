@@ -19,6 +19,7 @@
     <div id="app">
         <div id="wrapper">
     <!-- Sidebar -->
+<nav id="sidebar" v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forgot' ? false : true" style="display: none">
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-icon">
@@ -117,11 +118,12 @@
         <hr class="sidebar-divider">
         <div class="version" id="version-ruangadmin"></div>
     </ul>
+</nav>
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
             <!-- TopBar -->
-            <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+            <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forgot' ? false : true" style="display: none;" id="topbar" >
                 <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -327,6 +329,14 @@
 <script src="{{asset('backend/js/ruang-admin.min.js')}}"></script>
 <script src="{{asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
 <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>
+
+<script type="text/javascript">
+    let token = localStorage.getItem('token');
+    if(token) {
+        $("#sidebar").css('dispaly', '')
+        $("#topbar").css('dispaly', '')
+    }
+</script>
 </body>
 
 </html>
