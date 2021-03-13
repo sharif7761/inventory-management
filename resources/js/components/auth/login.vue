@@ -67,9 +67,21 @@ export default {
             axios.post('/api/auth/login', this.form)
             .then(res =>{
                 User.responseAfterLogin((res))
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Logged in successfully'
+                })
+
                 this.$router.push({ name: 'home' })
             })
-            .catch(error => console.log((error.response.data)))
+            .catch(error => this.errors = error.response.data.errors)
+            .catch(
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Invalid Email or Password'
+                })
+            )
         }
     }
 }
