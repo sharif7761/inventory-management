@@ -17,7 +17,7 @@ window.User = User
 
 //Import Notification class
 import Notification from './helpers/Notification';
-window.User = Notification
+window.Notification = Notification
 
 
 // Sweet Alert starts

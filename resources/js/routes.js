@@ -5,6 +5,9 @@ let logout = require('./components/auth/logout').default
 
 let home = require('./components/home').default
 
+let storeEmployee = require('./components/employee/create').default
+let employee = require('./components/employee/index').default
+
 export const routes = [
     { path: '/', component: login, name: '/' },
     { path: '/register', component: register, name: 'register' },
@@ -12,4 +15,9 @@ export const routes = [
     { path: '/logout', component: logout, name: 'logout' },
 
     { path: '/home', component: home, name: 'home' },
+
+
+    { path: '/store-employee', component: storeEmployee, name: 'storeEmployee' },
+    { path: '/employee', component: employee, name: 'employee' },
+
 ]
