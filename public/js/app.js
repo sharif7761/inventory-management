@@ -2270,6 +2270,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
@@ -2294,7 +2295,37 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    employeeInsert: function employeeInsert() {}
+    employeeInsert: function employeeInsert() {
+      var _this = this;
+
+      axios.post('api/employee', this.form).then(function () {
+        _this.$router.push({
+          name: 'employee'
+        });
+
+        Notification.success();
+      })["catch"](function (error) {
+        return _this.errors = error.response.data.errors;
+      });
+    },
+    onFileSelected: function onFileSelected(event) {
+      var _this2 = this;
+
+      var file = event.target.files[0];
+      console.log(file.size);
+
+      if (file.size > 1048770) {
+        Notification.image_validation();
+      } else {
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+          _this2.form.photo = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
   }
 });
 
@@ -46019,7 +46050,8 @@ var render = function() {
                             _c("div", { staticClass: "custom-file" }, [
                               _c("input", {
                                 staticClass: "custom-file-input",
-                                attrs: { type: "file", id: "customFile" }
+                                attrs: { type: "file", id: "customFile" },
+                                on: { change: _vm.onFileSelected }
                               }),
                               _vm._v(" "),
                               _c(
@@ -46039,11 +46071,22 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(0)
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("img", {
+                              attrs: {
+                                src: _vm.form.photo,
+                                height: "40px",
+                                width: "40px",
+                                alt: "employee img"
+                              }
+                            })
+                          ])
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1)
+                      _vm._m(0)
                     ]
                   )
                 ])
@@ -46056,16 +46099,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("img", {
-        attrs: { src: "", height: "40px", width: "40px", alt: "employee img" }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -63239,6 +63272,16 @@ var Notification = /*#__PURE__*/function () {
         type: 'warning',
         layout: 'topRight',
         text: 'Opps Wrong',
+        timeout: 1000
+      }).show();
+    }
+  }, {
+    key: "image_validation",
+    value: function image_validation() {
+      new Noty({
+        type: 'error',
+        layout: 'topRight',
+        text: 'Upload image less than 1MB',
         timeout: 1000
       }).show();
     }
